@@ -1,0 +1,45 @@
+h1{
+  
+  font-size:16pt; 
+  text-align:center;
+  color:DarkSlateBlue; 
+  border-top:DarkViolet;
+  border-top-style:dotted;
+  border-right:DarkViolet;
+  border-right-style:dotted;
+  border-left:DarkViolet;
+  border-left-style:dotted;
+  border-bottom:DarkViolet;
+  border-bottom-style:dotted;
+  padding-left:5px;
+  padding-right:5px;  
+}
+
+body{
+  
+  margin:25px;
+  background-color:Lavender;
+}
+
+canvas{
+  border:1px solid DarkGray;
+  height:75px;
+  width:75px;
+}
+
+#file1{
+  width:200px;
+}
+
+#file2{
+  width:200px;
+}
+
+#button1{
+  color:DeepPink;  
+}
+
+#button2{
+  color:DeepPink;  
+}
+
