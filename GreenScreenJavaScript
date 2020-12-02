@@ -1,0 +1,78 @@
+// create event handlers for each of the input 
+// elements, pointing each handler to a function  
+
+var fgImage = null;
+var bgImage = null;
+var fgCanvas;
+var bgCanvas;
+
+
+// the foreground image is initialized to the //selected image and displayed in the left panel  
+
+function loadForeGroundImage(){
+  fgCanvas = document.getElementById("canvas1");
+  var fileinput= document.getElementById("file1");
+  fgImage = new SimpleImage(fileinput);
+  fgImage.drawTo(fgCanvas);
+  alert("Foreground image loaded");
+}
+
+// The background image is initialized to the //selected image and displayed in the right panel. 
+
+function loadBackGroundImage(){
+  bgCanvas = document.getElementById("canvas2");
+  var fileinput= document.getElementById("file2");
+  bgImage = new SimpleImage(fileinput);
+  bgImage.drawTo(bgCanvas);
+  alert("Background image loaded")
+}
+
+function doGreenScreen(){
+  
+  if(fgImage == null || !fgImage.complete()){
+    alert("foreground not loaded");
+	  return;
+  }
+  
+  if(bgImage == null || !bgImage.complete()){
+    alert("background not loaded");
+    return;
+  }
+  
+  else{
+    clearCanvases();
+  
+    var output = new SimpleImage(fgImage.getWidth(),
+             fgImage.getHeight());
+
+    for(var pixel of fgImage.values()){
+      var x = pixel.getX();
+      var y = pixel.getY();
+      if(pixel.getGreen() > pixel.getRed() + pixel.getBlue()){
+        var bgPixel = bgImage.getPixel(x,y);
+	      output.setPixel(x,y, bgPixel);
+      }
+      else{
+        output.setPixel(x,y,pixel);
+      }
+      
+    }
+  var c = document.getElementById("canvas2");
+  output.drawTo(c);
+  
+}
+
+  alert("do green screen")
+}
+
+function clearCanvases(){  
+  doClear(fgCanvas);
+  doClear(bgCanvas);
+  alert("Canvases cleared")
+}
+
+function doClear(canvas){
+  var context = canvas.getContext("2d");
+  context.clearRect(0,0,canvas.width,canvas.height);
+  
+}
